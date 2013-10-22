@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int sayi;
+	printf("cozumlenecek sayi=");                               //kullanıcıdan çözümlemek istediği sayı istenir..
+	scanf("%d",&sayi);
+	printf("\n");
+	if(sayi>9999)                                               //kullanıcının girdiği sayı 4 haneli olma şartı kontrol edilir..
+	{
+		printf("girdiginiz sayi dort haneli degildir..\n");     //girilen sayı dört haneli değilse bunu çıktıya yazar..
+
+	}
+	else
+	{
+		printf("girilen sayi=%d\n",sayi);                       //girilen dört haneli sayıyı ekran çıktısına yazar..
+	printf("\n");
+
+	int binler=sayi/1000;                                       // girilen sayi 1000 e bölünür..
+	int yuzler=sayi%1000/100;                                    //girilen sayının önce mod 1000 e göre değeri bulunur ve 100 e bölünür..(mod almamızın sebebi 1000 lerden kurtarıp kaçtane 100 olduğunu anlamak)
+	int onlar=sayi%1000%100/10;                                  //girilen sayının önce 1000 e ardından 100 e göre modu alınır ve kalan 10 a bölünür..
+	int birler=sayi%1000%100%10/1;                               //girilen sayınınsırasıyla 1000,100ve ona göre modu alınır kalan birler basamağındaki değeri verecektir.
+
+	
+	printf("%d tane binlik sayi\n\n",binler);                   //sırasıyla kaç tane binlik,yüzlük,onluk ve birlik olduğu yazdırılır..
+	printf("%d tane yuzluk sayi\n\n",yuzler);
+	printf("%d tane onluk sayi\n\n",onlar);
+    printf("%d tane birlik sayi vardir\n\n",birler);
+
+	}
+	getch();
+		
+}
