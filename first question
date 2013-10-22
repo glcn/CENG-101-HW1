@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+	char KullaniciAdi[20];    //kullanıcı bilgileri ve istenenler tanımlanmıştır..
+	int sifre=1244;           //şifre burda tanımlanmıştır  ki kullanıcı haricinde herkes aynı hesaba ulaşamasın..
+	char cevap;           //do while döngüsü içerisinde kullanıcı istediği işlemi yapacaktır işlem yapmak istiyor musunuz sorusuna h(hayır) demediği sürece..
+    char islem;  
+	int EklenenPara;   
+	int bakiye=280;
+	int CekilenPara;
+	int HesapNo;
+	int havale;
+	do{                               //do-while döngüsünde kullanıcıdan kullanıcı adı ve şifre istenecektir..kullanıcı şifreyi doğru giirdiğinde karşısına menü çıkacaktır..aksi taktirde şifre yanlıştır uyarısı alacaktır..
+			 
+		printf("lutfen kullanici adini giriniz..\n");  //kullanıcıdan kullanıcı adı istenmiştir..(en fazla 20 karakter)
+		scanf("%s",&KullaniciAdi);
+		printf("\nlutfen sifrenizi giriniz..\n");      //kullanıcıdan önceden tanımlanan şifre istenmiştir..
+		scanf("%d",&sifre);
+		printf("\n");
+		if(sifre==1244)                               //if yapısı burda şifre kontrolü için kullanılmıştır..eğer girilen şifre 1244 ise kullanıcı menüye ulaşacaktır..
+		{
+			printf("******MENU******\n");             // menü oluşturulmuştur..
+			printf("\nA)Bakiye sorgulama\n");         //kullanıcının bakiyesini öğreneceği seçenektir..
+			printf("B)Para Yatirma\n");               //kullanıcının hesabına para yatırabileceği seçenektir..
+			printf("C)Para cekme\n");                 //kullanıcının hesabından para çekebileceği seçenektir..
+			printf("D)Para havale\n");                 //kullanıcının kendi girdiği başka bir hesaba havale yapabileceği seçenektir..
+			printf("\n");
+			printf("\nlutfen yapmak istediginiz islemi seciniz..\n");        //kullanıcıdan yapmak istediği işlem için seçeneklerden birini seçmesi istenmiştir..
+			islem=getch();
+			switch(islem)                           //switch-case yapısı kullanıcının seçme işlemi yapabilmesi için kullanılmıştır..
+			{
+			case 'A':                               //kullanıcı klavyeden a tuşuna bastığı zaman bakiyesini sorgulayabilecektir..büyük ve küçük harf kullanmamın sebebi capslock tuşunun açık olma ihtimali..
+			case 'a':
+				printf("bakiye=%d\n",bakiye);
+				break;
+			case 'B':                              //kullanıcı klavyeden b tuşuna bastığı zaman para yatırmak istediği bilgisini verecektir..
+			case 'b':
+				printf("yatirmak istediginiz para miktarini giriniz..\n"); //kullanıcıdan yatırmak istediği para miktarının girilmesi istenmiştir..
+				scanf("%d",&EklenenPara);
+				bakiye+=EklenenPara;                                       //hesaptaki anapara ile yatırılan para toplanmıştır..
+				printf("bakiye=%d\n",bakiye);
+				break;
+			case 'C':                                                      //kullanıcı klavyeden c tuşuna bastığı zaman para çekmek istediği bilgisini verecektir..                                                 
+			case 'c':
+				printf("cekmek istediginiz para miktarini giriniz..\n");  //kullanıcıdan hesabından çekmek istediği para miktarının girilmesi istenmiştir.. 
+				scanf("%d",&CekilenPara);
+				if(CekilenPara>bakiye)                                    //if kontrol yapısıyla çekilen para kontrol edilmiştir..çekilen para bakiyeden büyükse işlem gerçekleştirilemez yetersiz bakiye uyarısı verilir..
+					printf("yetersiz bakiye");
+				else
+					bakiye-=CekilenPara;                                //anaparadan çekilen para çıkarılır ve son bakiye yazdırılır..
+				printf("bakiye=%d\n",bakiye);
+				break;
+			case 'D':
+			case 'd':                                                    //kullanıcı klavyeden d tuşuna bastığı zaman havale yapmak istediği bilgisini verecektir..
+
+				printf("havale yapmak istediginiz hesap numarasini giriniz..\n");  //kullanıcıdan havale yapmak istenilen banka hesap numarası istenmiştir..
+				scanf("%d",&HesapNo);
+				printf("havale etmek istediginiz miktari giriniz..\n");            //kullanıcıdan havale yapmak istediği para miktarı istenmiştir..
+				scanf("%d",&havale);
+
+				if (havale>bakiye)                                               //if-else kontrol yapısıyla havale edilen paranın bakiyeden fazla olup olmadığı kontrol edilir..
+				{
+					printf("yetersiz bakiye\n");
+				}
+				else
+					bakiye-=havale;
+				printf("bakiye=%d",bakiye);
+				printf("\n");
+				printf("havale isleminiz gerceklesmistir..\n");
+
+				break;
+
+			default:
+				printf("lutfen islem seciniz..\n");                              
+				break;
+
+
+
+			}
+			printf("\nislem yapmaya devam etmek istiyormusunuz\n\n?");     //kullanıcıya işlem yapmak isteyip istemediği sorulur..
+			cevap=getch();
+
+
+
+		}
+		else{
+			printf("hatali sifre girdiniz..");                                //girilen şifre 1244 den farklı olursa hatalı şifre uyarısı verilir..
+		}
+
+
+	}while(cevap!='h');    //do-while yapısının son kısmı..kullanıcı işlem yapmak istiyor musunuz sorusuna h(hayır) demediği sürece döngü devam edecektir..hayır dediği zaman programdan çıkacaktır..
+	
+	
+}
+
+
+
